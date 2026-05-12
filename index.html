@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deltek Costpoint x Bhanu Kumar &middot; Proof of Work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bg:    #0a0c10;
+  --bg2:   #0f1117;
+  --bg3:   #14171f;
+  --bg4:   #1a1e28;
+  --bg5:   #212636;
+  --bdr:   rgba(255,255,255,0.06);
+  --bmd:   rgba(255,255,255,0.11);
+  --blg:   rgba(255,255,255,0.20);
+  --t1:    #eef0f4;
+  --t2:    #9099ae;
+  --t3:    #4d5668;
+  --del:   #0066cc;
+  --deld:  rgba(0,102,204,0.12);
+  --delg:  rgba(0,102,204,0.22);
+  --delt:  #4d99e0;
+  --grn:   #22c55e;
+  --gdim:  rgba(34,197,94,0.09);
+  --gt:    #4ade80;
+  --red:   #ef4444;
+  --rddim: rgba(239,68,68,0.09);
+  --rdt:   #f87171;
+  --amb:   #f59e0b;
+  --adim:  rgba(245,158,11,0.09);
+  --at:    #fbbf24;
+  --teal:  #0d9488;
+  --tdim:  rgba(13,148,136,0.09);
+  --tt:    #2dd4bf;
+}
+
+html{scroll-behavior:smooth;scroll-padding-top:62px;}
+body{
+  background:var(--bg);color:var(--t1);
+  font-family:'IBM Plex Sans',sans-serif;font-size:16px;
+  line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+
+/* reading bar */
+.rbar{position:fixed;top:0;left:0;height:2px;background:var(--del);z-index:500;width:0%;transition:width 0.1s linear;}
+
+/* NAV */
+.nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(10,12,16,0.94);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--bdr);padding:0 5vw;
+}
+.nav-i{
+  max-width:1160px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  height:58px;gap:16px;
+}
+.nav-logo{
+  font-family:'IBM Plex Mono',monospace;font-size:12px;
+  color:var(--t1);letter-spacing:0.03em;white-space:nowrap;flex-shrink:0;
+}
+.nav-logo .x{color:var(--t3);margin:0 7px;}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap;}
+.np{
+  font-size:12px;font-weight:500;padding:6px 14px;
+  border-radius:100px;border:1px solid var(--bdr);
+  color:var(--t2);background:transparent;
+  text-decoration:none;transition:all 0.15s;white-space:nowrap;
+}
+.np:hover{border-color:var(--bmd);color:var(--t1);}
+.np.cta{background:var(--del);border-color:var(--del);color:#fff;font-weight:600;}
+.np.cta:hover{opacity:0.85;}
+
+.hbg{
+  display:none;flex-direction:column;gap:5px;
+  cursor:pointer;background:none;border:none;padding:4px;flex-shrink:0;
+}
+.hbg span{
+  display:block;width:22px;height:1.5px;
+  background:var(--t1);border-radius:2px;
+  transition:transform 0.3s,opacity 0.3s;
+}
+.hbg.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hbg.open span:nth-child(2){opacity:0;}
+.hbg.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+.mob-menu{
+  display:none;position:fixed;inset:0;top:58px;
+  background:var(--bg);z-index:190;
+  flex-direction:column;padding:32px 5vw;gap:0;
+  border-top:1px solid var(--bdr);
+}
+.mob-menu.open{display:flex;}
+.mob-menu a{
+  display:block;font-size:20px;
+  font-family:'Playfair Display',serif;font-weight:700;
+  color:var(--t1);text-decoration:none;
+  padding:18px 0;border-bottom:1px solid var(--bdr);
+}
+.mob-menu a:last-child{border-bottom:none;}
+.mob-menu a.cta-m{color:var(--delt);}
+
+@media(max-width:720px){
+  .nav-links{display:none;}
+  .hbg{display:flex;}
+}
+
+/* LAYOUT */
+.wrap{max-width:1160px;margin:0 auto;padding:0 5vw;}
+section{padding:80px 0;border-bottom:1px solid var(--bdr);}
+
+/* COVER */
+.cover{
+  padding:100px 5vw 80px;max-width:1160px;margin:0 auto;
+  position:relative;overflow:hidden;border-bottom:1px solid var(--bdr);
+}
+.cover::after{
+  content:'';position:absolute;top:-120px;right:-80px;
+  width:600px;height:600px;
+  background:radial-gradient(circle,var(--delg) 0%,transparent 65%);
+  pointer-events:none;
+}
+.cover::before{
+  content:'';position:absolute;bottom:-80px;left:20%;
+  width:380px;height:380px;
+  background:radial-gradient(circle,rgba(13,148,136,0.07) 0%,transparent 65%);
+  pointer-events:none;
+}
+.c-label{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--t3);margin-bottom:28px;display:block;
+}
+.c-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(40px,7vw,86px);
+  font-weight:800;line-height:0.97;letter-spacing:-0.02em;
+  color:var(--t1);margin-bottom:26px;position:relative;z-index:1;
+}
+.c-title .ital{font-style:italic;color:var(--delt);}
+.c-title .ghost{
+  color:transparent;
+  -webkit-text-stroke:1.5px rgba(255,255,255,0.10);
+}
+.c-sub{
+  font-size:clamp(15px,1.7vw,18px);color:var(--t2);
+  line-height:1.82;max-width:600px;margin-bottom:38px;
+  font-weight:400;position:relative;z-index:1;
+}
+.c-sub strong{color:var(--t1);font-weight:600;}
+.c-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--del);color:#fff;
+  font-family:'IBM Plex Mono',monospace;font-weight:500;
+  font-size:clamp(11px,1.3vw,13px);letter-spacing:0.08em;text-transform:uppercase;
+  padding:10px 22px;border-radius:6px;margin-bottom:56px;
+  position:relative;z-index:1;
+}
+.c-tag-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,0.55);
+  animation:blink 2.2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.25}}
+.c-foot{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  padding-top:26px;border-top:1px solid var(--bdr);flex-wrap:wrap;gap:20px;
+}
+.c-info{font-size:13px;color:var(--t2);line-height:1.9;}
+.c-info strong{display:block;font-size:14.5px;color:var(--t1);font-weight:600;margin-bottom:2px;}
+.c-toc{display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
+.tl-link{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  color:var(--t3);line-height:2.2;padding-right:13px;
+  border-right:2px solid var(--del);text-decoration:none;
+  transition:color 0.15s;letter-spacing:0.04em;
+}
+.tl-link:hover{color:var(--t2);}
+
+/* SEC HEADER */
+.sec-ey{display:flex;align-items:center;gap:12px;margin-bottom:36px;}
+.sec-num{
+  font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--delt);background:var(--deld);border:1px solid rgba(0,102,204,0.2);
+  padding:3px 12px;border-radius:100px;white-space:nowrap;
+}
+.sec-nm{
+  font-size:11px;font-weight:400;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--t3);
+}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.55s ease,transform 0.55s ease;}
+.reveal.in{opacity:1;transform:none;}
+
+/* THE BRIEF / ANGLE */
+.angle-wrap{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:start;}
+@media(max-width:720px){.angle-wrap{grid-template-columns:1fr;gap:30px;}}
+.angle-lead{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(21px,3vw,32px);font-weight:700;
+  line-height:1.32;color:var(--t1);letter-spacing:-0.015em;margin-bottom:20px;
+}
+.angle-lead em{color:var(--delt);font-style:italic;}
+.angle-p{font-size:15px;color:var(--t2);line-height:1.84;font-weight:400;margin-bottom:14px;}
+.angle-p:last-child{margin-bottom:0;}
+.angle-p strong{color:var(--t1);font-weight:600;}
+.stat-stack{display:flex;flex-direction:column;gap:12px;}
+.stat-card{
+  background:var(--bg2);border:1px solid var(--bdr);
+  border-radius:14px;padding:18px 22px;
+}
+.stat-card:first-child{border-color:rgba(0,102,204,0.22);background:var(--deld);}
+.stat-val{
+  font-family:'Playfair Display',serif;font-size:34px;font-weight:700;
+  color:var(--del);line-height:1;margin-bottom:6px;letter-spacing:-0.02em;
+}
+.stat-val.teal{color:var(--tt);}
+.stat-val.grn{color:var(--gt);}
+.stat-lbl{font-size:12.5px;color:var(--t2);line-height:1.6;font-weight:400;}
+.stat-lbl strong{color:var(--t1);font-weight:600;display:block;margin-bottom:3px;}
+
+/* MESSAGING AUDIT */
+.ashell{background:var(--bg2);border:1px solid var(--bdr);border-radius:20px;overflow:hidden;}
+.ahdr{
+  padding:22px 28px 18px;border-bottom:1px solid var(--bdr);
+  background:var(--bg3);
+  display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;
+}
+.ahdr h3{
+  font-family:'Playfair Display',serif;font-size:18px;font-weight:700;
+  letter-spacing:-0.01em;color:var(--t1);margin-bottom:3px;
+}
+.ahdr p{font-size:12.5px;color:var(--t3);font-family:'IBM Plex Mono',monospace;}
+.tabrow{
+  display:flex;gap:3px;background:var(--bg4);
+  border:1px solid var(--bdr);border-radius:8px;padding:3px;flex-shrink:0;
+}
+.tbtn{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  padding:6px 13px;border:none;background:transparent;
+  color:var(--t2);cursor:pointer;border-radius:6px;
+  transition:all 0.18s;letter-spacing:0.04em;white-space:nowrap;
+}
+.tbtn.on{
+  background:var(--bg2);color:var(--delt);
+  border:1px solid rgba(0,102,204,0.22);
+  box-shadow:0 1px 4px rgba(0,0,0,0.35);
+}
+.abody{padding:26px 28px;}
+.apanel{display:none;}
+.apanel.on{display:block;}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:560px){.cgrid{grid-template-columns:1fr;}}
+.mbox{border-radius:12px;padding:18px 20px;}
+.mbox.before{background:var(--rddim);border:1px solid rgba(239,68,68,0.15);}
+.mbox.after{background:var(--deld);border:1px solid rgba(0,102,204,0.18);}
+.mbox-lbl{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:0.1em;text-transform:uppercase;margin-bottom:9px;
+}
+.mbox.before .mbox-lbl{color:var(--rdt);}
+.mbox.after .mbox-lbl{color:var(--delt);}
+.mbox p{font-size:14px;line-height:1.74;color:var(--t2);font-weight:400;}
+.mbox p strong{color:var(--t1);font-weight:600;}
+.mbox p em{font-style:italic;color:var(--t1);}
+.insight{
+  background:var(--bg3);border-left:3px solid var(--del);
+  border-radius:0 12px 12px 0;padding:13px 18px;
+  font-size:13.5px;color:var(--t2);line-height:1.75;font-weight:400;
+}
+.insight strong{color:var(--t1);font-weight:600;}
+
+/* GTM BRIEF */
+.gshell{background:var(--bg2);border:1px solid var(--bdr);border-radius:20px;overflow:hidden;}
+.ghdr{
+  padding:24px 28px 20px;background:var(--bg3);border-bottom:1px solid var(--bdr);
+  display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;
+}
+.ghdr h3{
+  font-family:'Playfair Display',serif;font-size:18px;font-weight:700;
+  letter-spacing:-0.01em;color:var(--t1);margin-bottom:3px;
+}
+.ghdr p{font-size:12.5px;color:var(--t3);font-family:'IBM Plex Mono',monospace;}
+.fbadge{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  color:var(--tt);border:1px solid rgba(13,148,136,0.25);
+  background:var(--tdim);border-radius:4px;
+  padding:5px 12px;white-space:nowrap;letter-spacing:0.08em;text-transform:uppercase;
+}
+.gbody{display:grid;grid-template-columns:1fr 1fr;}
+@media(max-width:660px){.gbody{grid-template-columns:1fr;}}
+.gcell{padding:22px 26px;border-right:1px solid var(--bdr);border-bottom:1px solid var(--bdr);}
+.gcell:nth-child(even){border-right:none;}
+.gcell.full{grid-column:1/-1;border-right:none;border-bottom:none;}
+.gcell h4{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  color:var(--delt);letter-spacing:0.12em;text-transform:uppercase;
+  margin-bottom:11px;padding-bottom:9px;border-bottom:1px solid var(--bdr);
+}
+.gcell p{font-size:13.5px;color:var(--t2);line-height:1.80;margin-bottom:8px;font-weight:400;}
+.gcell p:last-child{margin-bottom:0;}
+.gcell p strong{color:var(--t1);font-weight:600;}
+.gcell p em{font-style:italic;}
+.trow{display:flex;flex-direction:column;margin-top:12px;}
+.trrow{
+  display:grid;grid-template-columns:76px 1fr;
+  gap:16px;padding:12px 0;border-bottom:1px solid var(--bdr);align-items:flex-start;
+}
+.trrow:last-child{border-bottom:none;}
+.trwk{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  color:var(--delt);text-transform:uppercase;letter-spacing:0.08em;padding-top:2px;
+}
+.trtxt{font-size:13.5px;color:var(--t2);line-height:1.70;font-weight:400;}
+.trtxt strong{color:var(--t1);font-weight:600;}
+.krow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;}
+@media(max-width:460px){.krow{grid-template-columns:1fr 1fr;}}
+.kpi{background:var(--bg3);border:1px solid var(--bdr);border-radius:12px;padding:14px 16px;}
+.kpi-l{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--t3);
+  text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;
+}
+.kpi-v{
+  font-family:'Playfair Display',serif;font-size:22px;font-weight:700;
+  color:var(--del);line-height:1;margin-bottom:5px;
+}
+.kpi-d{font-size:11.5px;color:var(--t3);line-height:1.5;}
+
+/* ICP / PERSONA */
+.icp-intro{
+  font-size:15.5px;color:var(--t2);font-weight:400;line-height:1.82;
+  max-width:700px;margin-bottom:32px;
+}
+.icp-intro strong{color:var(--t1);font-weight:600;}
+.ptabs{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:14px;}
+@media(max-width:500px){.ptabs{grid-template-columns:1fr;}}
+.ptab{
+  background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;
+  padding:14px 16px;cursor:pointer;transition:all 0.18s;text-align:left;
+}
+.ptab:hover{border-color:var(--bmd);}
+.ptab.on{border-color:rgba(0,102,204,0.3);background:var(--deld);}
+.ptab-label{
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--t3);margin-bottom:5px;
+}
+.ptab.on .ptab-label{color:var(--delt);}
+.ptab-name{font-size:13px;font-weight:600;color:var(--t1);}
+.ptab-role{font-size:12px;color:var(--t2);font-weight:400;margin-top:2px;}
+.pcard{background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;overflow:hidden;}
+.pcard-hdr{padding:20px 24px;border-bottom:1px solid var(--bdr);background:var(--bg3);}
+.pcard-hdr .ptag{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--delt);background:var(--deld);border:1px solid rgba(0,102,204,0.22);
+  padding:3px 11px;border-radius:4px;display:inline-block;margin-bottom:10px;
+}
+.pcard-hdr h4{
+  font-family:'Playfair Display',serif;font-size:20px;font-weight:700;
+  color:var(--t1);letter-spacing:-0.015em;margin-bottom:4px;
+}
+.pcard-hdr p{font-size:13px;color:var(--t2);font-weight:400;}
+.pcard-body{display:grid;grid-template-columns:1fr 1fr;}
+@media(max-width:580px){.pcard-body{grid-template-columns:1fr;}}
+.pcard-col{padding:18px 22px;border-right:1px solid var(--bdr);}
+.pcard-col:last-child{border-right:none;}
+.pcard-col h5{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--t3);
+  letter-spacing:0.1em;text-transform:uppercase;margin-bottom:11px;
+}
+.pcard-col ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.pcard-col ul li{font-size:13px;color:var(--t2);line-height:1.65;font-weight:400;padding-left:14px;position:relative;}
+.pcard-col ul li::before{content:'';position:absolute;left:0;top:9px;width:5px;height:1px;background:var(--t3);}
+.pcard-msg{grid-column:1/-1;padding:18px 22px;border-top:1px solid var(--bdr);background:var(--bg3);}
+.pcard-msg h5{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--delt);
+  letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;
+}
+.pcard-msg p{font-size:14px;color:var(--t1);line-height:1.80;font-weight:400;font-family:'Playfair Display',serif;font-style:italic;}
+
+/* COPY SAMPLES / SALES ENABLEMENT */
+.cex{
+  background:var(--bg2);border:1px solid var(--bdr);border-radius:18px;
+  overflow:hidden;margin-bottom:14px;
+}
+.cex-top{
+  padding:14px 22px;border-bottom:1px solid var(--bdr);background:var(--bg3);
+  display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+}
+.cex-ch{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  color:var(--t3);letter-spacing:0.06em;
+}
+.cbadge{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:0.08em;text-transform:uppercase;padding:2px 10px;border-radius:4px;
+}
+.cbadge.landing{background:var(--deld);color:var(--delt);border:1px solid rgba(0,102,204,0.22);}
+.cbadge.email{background:var(--tdim);color:var(--tt);border:1px solid rgba(13,148,136,0.22);}
+.cbadge.sales{background:var(--adim);color:var(--at);border:1px solid rgba(245,158,11,0.22);}
+.cbadge.internal{background:var(--gdim);color:var(--gt);border:1px solid rgba(34,197,94,0.22);}
+.cex-body{padding:22px 24px;}
+.ched{
+  font-family:'Playfair Display',serif;font-size:17px;font-weight:700;
+  color:var(--t1);line-height:1.38;margin-bottom:10px;letter-spacing:-0.01em;
+}
+.ctxt{font-size:13.5px;color:var(--t2);line-height:1.80;font-weight:400;margin-bottom:12px;}
+.ctxt strong{color:var(--t1);font-weight:600;}
+.cwhy{
+  background:var(--bg3);border-left:3px solid var(--del);
+  border-radius:0 10px 10px 0;padding:12px 18px;
+  font-size:13px;color:var(--t2);line-height:1.75;font-weight:400;
+}
+.cwhy strong{color:var(--t1);font-weight:600;}
+
+/* OTHER WORK */
+.wgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+@media(max-width:640px){.wgrid{grid-template-columns:1fr;}}
+.wcard{
+  display:flex;flex-direction:column;
+  background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;
+  padding:20px 22px;text-decoration:none;
+  transition:all 0.2s;gap:8px;
+}
+.wcard:hover{border-color:rgba(0,102,204,0.3);transform:translateY(-2px);}
+.wcard-tag{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--t3);
+  text-transform:uppercase;letter-spacing:0.1em;
+}
+.wcard h4{
+  font-family:'Playfair Display',serif;font-size:15.5px;font-weight:700;
+  letter-spacing:-0.01em;color:var(--t1);line-height:1.28;
+}
+.wcard p{font-size:13px;color:var(--t2);line-height:1.65;font-weight:400;flex:1;}
+.warr{font-size:15px;color:var(--t3);transition:all 0.2s;margin-top:4px;}
+.wcard:hover .warr{color:var(--del);transform:translateX(4px);}
+
+/* SIGNATURE */
+.sig{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  flex-wrap:wrap;gap:28px;padding:56px 0;
+}
+.sig-name{
+  font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,52px);
+  font-weight:800;letter-spacing:-0.03em;color:var(--t1);
+  line-height:1;margin-bottom:10px;
+}
+.sig-name span{color:var(--del);}
+.sig-det{font-size:13px;color:var(--t2);line-height:2.1;}
+.sig-det a{color:var(--t2);text-decoration:none;transition:color 0.15s;}
+.sig-det a:hover{color:var(--t1);}
+.sig-btns{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.sbtn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 22px;border-radius:8px;font-size:14px;font-weight:600;
+  text-decoration:none;transition:all 0.18s;
+}
+.sbtn.pri{background:var(--del);color:#fff;}
+.sbtn.pri:hover{opacity:0.85;}
+.sbtn.ghost{
+  background:transparent;color:var(--t2);
+  border:1px solid var(--bdr);
+}
+.sbtn.ghost:hover{border-color:var(--bmd);color:var(--t1);}
+</style>
+</head>
+<body>
+
+<div class="rbar" id="rbar"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-i">
+    <div class="nav-logo">Deltek Costpoint <span class="x">/</span> Bhanu Kumar</div>
+    <div class="nav-links">
+      <a class="np" href="#brief" onclick="closeMob()">The brief</a>
+      <a class="np" href="#audit" onclick="closeMob()">Messaging audit</a>
+      <a class="np" href="#gtm" onclick="closeMob()">GTM plan</a>
+      <a class="np" href="#buyers" onclick="closeMob()">Buyers</a>
+      <a class="np" href="#copy" onclick="closeMob()">Copy samples</a>
+      <a class="np" href="#work" onclick="closeMob()">Other work</a>
+      <a class="np cta" href="mailto:bhanukumar0902@gmail.com">Get in touch</a>
+    </div>
+    <button class="hbg" id="hbg" onclick="toggleMob()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mob-menu" id="mob">
+  <a href="#brief" onclick="closeMob()">The brief</a>
+  <a href="#audit" onclick="closeMob()">Messaging audit</a>
+  <a href="#gtm" onclick="closeMob()">GTM plan</a>
+  <a href="#buyers" onclick="closeMob()">Buyers</a>
+  <a href="#copy" onclick="closeMob()">Copy samples</a>
+  <a href="#work" onclick="closeMob()">Other work</a>
+  <a href="mailto:bhanukumar0902@gmail.com" class="cta-m">Get in touch</a>
+</div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover::after"></div>
+  <span class="c-label">Proof of Work &nbsp;/&nbsp; Product Marketing Manager &nbsp;/&nbsp; Deltek Costpoint</span>
+  <h1 class="c-title">
+    Dela<br>
+    is <span class="ital">already</span><br>
+    <span class="ghost">in the product.</span>
+  </h1>
+  <p class="c-sub">
+    The problem isn't the technology. Deltek has shipped Ask Dela, Smart Summaries, Dela Agents, and a fully redesigned UI in under 18 months. <strong>The problem is that GovCon buyers don't yet know what to do with it.</strong> Compliance-first teams don't adopt features because a release note said they shipped. They adopt when they trust the outcome, understand the risk, and see what it does for the specific work they're accountable for. That's the gap this PMM role is here to close.
+  </p>
+  <div class="c-tag">
+    <span class="c-tag-dot"></span>
+    Prepared specifically for the Costpoint PMM opening
+  </div>
+  <div class="c-foot">
+    <div class="c-info">
+      <strong>Bhanu Kumar</strong>
+      Product Marketing / 4 years<br>
+      B2B SaaS &nbsp;&#183;&nbsp; GTM execution &nbsp;&#183;&nbsp; AI positioning<br>
+      <a href="mailto:bhanukumar0902@gmail.com" style="color:var(--delt);text-decoration:none;">bhanukumar0902@gmail.com</a>
+    </div>
+    <div class="c-toc">
+      <a class="tl-link" href="#brief">01 &nbsp; The brief</a>
+      <a class="tl-link" href="#audit">02 &nbsp; Messaging audit</a>
+      <a class="tl-link" href="#gtm">03 &nbsp; GTM plan: Dela Agents</a>
+      <a class="tl-link" href="#buyers">04 &nbsp; Buyer map</a>
+      <a class="tl-link" href="#copy">05 &nbsp; Copy samples</a>
+      <a class="tl-link" href="#work">06 &nbsp; Other work</a>
+    </div>
+  </div>
+</div>
+
+<!-- 01 THE BRIEF -->
+<section id="brief">
+  <div class="wrap">
+    <div class="sec-ey reveal">
+      <span class="sec-num">Part 01</span>
+      <span class="sec-nm">The brief</span>
+    </div>
+    <div class="angle-wrap reveal">
+      <div>
+        <div class="angle-lead">
+          Costpoint has shipped more product in 18 months than it probably did in the previous five years. The market hasn't caught up yet. <em>That's the job.</em>
+        </div>
+        <p class="angle-p">
+          Deltek is in a genuinely unusual position. Costpoint is the default ERP for US government contractors, full stop. There's no meaningful ERP competitor who knows the FAR, DCAA, CMMC stack the way Costpoint does. That kind of market position is rare, and it gives the marketing team permission to move on its own terms.
+        </p>
+        <p class="angle-p">
+          But that same dominance creates a quieter problem: <strong>when customers feel locked in, they stop paying close attention to new capabilities.</strong> Costpoint users trust the product for compliance. They don't necessarily trust it for AI. Those are different buying decisions, and they require different stories.
+        </p>
+        <p class="angle-p">
+          In 2025, Deltek's own Clarity study found that 45% of GovCon firms are now using AI in their operations, up 10 points in a year. That's not a laggard audience anymore. These firms are evaluating AI tools actively. <strong>The PMM's job is to make sure that when a Costpoint user asks "can our ERP do this?", the answer is already obvious to them.</strong>
+        </p>
+        <p class="angle-p">
+          That means three things: positioning Dela as a concrete operational tool rather than a platform-level promise, connecting each AI feature to the compliance and financial outcomes GovCon leadership actually cares about, and building enablement that helps Sales explain this to a DCAA-first CFO without making it sound like a pitch from a software company.
+        </p>
+      </div>
+      <div class="stat-stack">
+        <div class="stat-card">
+          <div class="stat-val">45%</div>
+          <div class="stat-lbl">
+            <strong>GovCon firms now using AI in operations</strong>
+            Up 10 percentage points in a single year per Deltek's 2025 Clarity study. The audience is ready.
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val teal">$100K+</div>
+          <div class="stat-lbl">
+            <strong>Average compliance investment by enterprise GovCons</strong>
+            CMMC and regulatory changes are forcing budget conversations. Compliance is the on-ramp, not the barrier.
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val grn">54%</div>
+          <div class="stat-lbl">
+            <strong>Reported higher government revenue in 2024</strong>
+            Market tailwinds are real. The firms growing fastest are also adopting new tooling fastest.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 MESSAGING AUDIT -->
+<section id="audit">
+  <div class="wrap">
+    <div class="sec-ey reveal">
+      <span class="sec-num">Part 02</span>
+      <span class="sec-nm">Messaging audit: Costpoint AI</span>
+    </div>
+
+    <div class="ashell reveal">
+      <div class="ahdr">
+        <div>
+          <h3>How Dela is currently positioned vs. how it should be</h3>
+          <p>Based on current Deltek.com copy, product release notes, and ProjectCon 2025 materials</p>
+        </div>
+        <div class="tabrow">
+          <button class="tbtn on" onclick="swTab('ui',this)">UI / product</button>
+          <button class="tbtn" onclick="swTab('ai',this)">Dela / AI</button>
+          <button class="tbtn" onclick="swTab('comp',this)">Compliance</button>
+        </div>
+      </div>
+      <div class="abody">
+
+        <!-- PANEL: UI -->
+        <div class="apanel on" id="ap-ui">
+          <div class="cgrid">
+            <div class="mbox before">
+              <div class="mbox-lbl">Current</div>
+              <p>"A smarter, sleeker experience that <em>completely reimagines</em> how government contractors interact with Costpoint."</p>
+            </div>
+            <div class="mbox after">
+              <div class="mbox-lbl">Reframe</div>
+              <p>"The same Costpoint your team relies on, now built around how you actually work. <strong>Find anything faster, train new hires quicker, and stop losing time to navigation.</strong>"</p>
+            </div>
+          </div>
+          <div class="insight">
+            <strong>The issue with "completely reimagines":</strong> For a GovCon finance team that has run Costpoint for a decade, "completely reimagined" sounds like retraining risk, not a benefit. The reframe keeps the familiarity (same Costpoint) while making the value concrete: speed, onboarding, less friction. Same product, different emotional register.
+          </div>
+        </div>
+
+        <!-- PANEL: AI -->
+        <div class="apanel" id="ap-ai">
+          <div class="cgrid">
+            <div class="mbox before">
+              <div class="mbox-lbl">Current</div>
+              <p>"Dela Agents are task-specific, intelligent automation components that <em>take action on behalf of the user.</em>"</p>
+            </div>
+            <div class="mbox after">
+              <div class="mbox-lbl">Reframe</div>
+              <p>"<strong>Expense reports, timesheet approvals, contract records from documents.</strong> The things that clog up your accounting team's Friday afternoon. Dela handles them. Your team doesn't have to."</p>
+            </div>
+          </div>
+          <div class="insight">
+            <strong>The issue with "take action on behalf of the user":</strong> This is product documentation language, not buyer language. GovCon buyers don't think in terms of "automation components." They think in terms of specific tasks that eat hours. The reframe names those tasks directly: expense reports, timesheet approvals, contract records. Concrete beats architectural every time with this audience.
+          </div>
+        </div>
+
+        <!-- PANEL: COMPLIANCE -->
+        <div class="apanel" id="ap-comp">
+          <div class="cgrid">
+            <div class="mbox before">
+              <div class="mbox-lbl">Current</div>
+              <p>"Costpoint GCCM has achieved FedRAMP Moderate Equivalency and <em>supports DFARS 252.204-7012 and CMMC compliance.</em>"</p>
+            </div>
+            <div class="mbox after">
+              <div class="mbox-lbl">Reframe</div>
+              <p>"If your DoD contract requires CMMC, <strong>Costpoint GCCM is already assessed. That's one less thing your team has to prove.</strong> The assessment is done. The documentation is yours."</p>
+            </div>
+          </div>
+          <div class="insight">
+            <strong>Why this matters:</strong> GovCon compliance officers aren't asking "does this meet DFARS?" They're asking "what do I have to do to demonstrate compliance before the audit?" The reframe answers the operational question, not the technical one. "The assessment is done" is the line that ends a procurement conversation, not the regulation number.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 03 GTM BRIEF -->
+<section id="gtm">
+  <div class="wrap">
+    <div class="sec-ey reveal">
+      <span class="sec-num">Part 03</span>
+      <span class="sec-nm">GTM plan: Dela Agents adoption</span>
+    </div>
+
+    <div class="gshell reveal">
+      <div class="ghdr">
+        <div>
+          <h3>Driving adoption of Dela Agents among existing Costpoint customers</h3>
+          <p>Launch scenario &nbsp;/&nbsp; Q3 2025 feature release &nbsp;/&nbsp; Existing customer base</p>
+        </div>
+        <span class="fbadge">Customer adoption play</span>
+      </div>
+      <div class="gbody">
+
+        <div class="gcell">
+          <h4>The problem we're solving</h4>
+          <p>Dela Agents shipped. The feature can automate timesheet approvals, expense reports, and contract record creation. Most existing Costpoint customers don't know it exists, and the ones who've seen the release notes don't know what it means for their team's day-to-day work.</p>
+          <p>The gap isn't awareness at the product level. It's <strong>awareness at the outcomes level.</strong> "Dela Agents are available" is not the same as "your accounting team gets two hours back every Friday."</p>
+        </div>
+
+        <div class="gcell">
+          <h4>Target segment</h4>
+          <p>Mid-size GovCon firms (200-1,000 employees) currently on Costpoint cloud. Finance and operations leads who own timekeeping and expense workflows. Not the IT buyer. Not the C-suite. <strong>The person who is personally annoyed by the Friday afternoon approval pile-up.</strong></p>
+          <p>Secondary: Customer Success teams who can surface adoption data and flag accounts where feature usage is near zero.</p>
+        </div>
+
+        <div class="gcell">
+          <h4>Positioning angle</h4>
+          <p>Don't lead with "AI." Lead with the task. GovCon buyers have compliance anxiety around AI that's real and valid. Leading with "Dela Agents are AI-powered" triggers that anxiety before you've established trust.</p>
+          <p>Instead: <strong>"Your timesheet approvals are already in Costpoint. Dela can run them for you. Same process, same compliance controls, no manual steps."</strong> AI is in the fine print, not the headline. Trust first, capability second.</p>
+        </div>
+
+        <div class="gcell">
+          <h4>Channel and tactics</h4>
+          <p><strong>1. In-product prompts</strong> at the specific moment a user is about to do the manual version of the task Dela can automate. "Dela can do this for you" at the expense report screen beats any email campaign.</p>
+          <p><strong>2. Customer Success-led activation</strong> for the top 100 accounts by usage gap. CS reaches out with a specific number: "Based on your account data, your team spends roughly X hours per month on manual approvals that Dela can handle."</p>
+          <p><strong>3. Short-form video for user conferences and email</strong> showing a real workflow: expense report from upload to approval in under a minute.</p>
+        </div>
+
+        <div class="gcell full">
+          <h4>30-60-90 day execution timeline</h4>
+          <div class="trow">
+            <div class="trrow">
+              <div class="trwk">Days 1-30</div>
+              <div class="trtxt"><strong>Brief and align.</strong> Work with CS to pull activation data: which account segments have zero Dela usage? Build the ICP list for the activation outreach. Write the in-product prompt copy with PM. Get the 60-second workflow video scripted and into production. Land the positioning language across Sales, CS, and the web page.</div>
+            </div>
+            <div class="trrow">
+              <div class="trwk">Days 31-60</div>
+              <div class="trtxt"><strong>Run the activation campaign.</strong> In-product prompts live. CS sends activation emails to the targeted segment using the data-backed framing. Host one 30-minute customer webinar showing the real workflow, not slides. Collect objections from CS and Sales calls and build a live objection-handling card for the field.</div>
+            </div>
+            <div class="trrow">
+              <div class="trwk">Days 61-90</div>
+              <div class="trtxt"><strong>Measure and double down.</strong> Pull Dela Agents feature activation rate vs baseline. Talk to 5 customers who adopted and 5 who didn't. Find out what the actual hesitation was. Write a short case study from the fastest adoption story and use it in the next round of CS outreach. Feed insights back to PM on what "safe AI" means to this audience.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="gcell full" style="border-bottom:none;">
+          <h4>How I'd measure success</h4>
+          <div class="krow">
+            <div class="kpi">
+              <div class="kpi-l">Primary</div>
+              <div class="kpi-v">30%</div>
+              <div class="kpi-d">Dela Agents activation rate in target segment within 90 days (from near-zero baseline)</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-l">Secondary</div>
+              <div class="kpi-v">5+</div>
+              <div class="kpi-d">Customer interviews completed. Qualitative data matters as much as activation numbers for this feature.</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-l">Enablement</div>
+              <div class="kpi-v">100%</div>
+              <div class="kpi-d">Sales and CS reps able to demo Dela Agents in a discovery call without a PMM in the room</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 04 BUYER MAP -->
+<section id="buyers">
+  <div class="wrap">
+    <div class="sec-ey reveal">
+      <span class="sec-num">Part 04</span>
+      <span class="sec-nm">Buyer map: who's actually in the room</span>
+    </div>
+    <p class="icp-intro reveal">
+      Costpoint has three distinct buyer types who all have to say yes in the same deal. The problem is that Deltek's current messaging largely speaks to one of them at a time. <strong>A CFO and a DCAA auditor and a Project Manager are all using Costpoint for different things, under completely different pressures.</strong> The copy needs to work for all three.
+    </p>
+    <div class="ptabs reveal" id="ptabs"></div>
+    <div class="pcard reveal" id="pcard"></div>
+  </div>
+</section>
+
+<!-- 05 COPY SAMPLES -->
+<section id="copy">
+  <div class="wrap">
+    <div class="sec-ey reveal">
+      <span class="sec-num">Part 05</span>
+      <span class="sec-nm">Copy and enablement samples</span>
+    </div>
+
+    <!-- COPY 1 -->
+    <div class="cex reveal">
+      <div class="cex-top">
+        <span class="cex-ch">Landing page hero &nbsp;/&nbsp; Dela Agents feature page</span>
+        <span class="cbadge landing">Landing page</span>
+      </div>
+      <div class="cex-body">
+        <div class="ched">Your team doesn't have to touch every expense report anymore.</div>
+        <div class="ctxt">
+          The approvals. The timesheets. The contract records that take an afternoon to create from a single document. <strong>Dela does these now, inside the same Costpoint workflows your team already knows, with the same compliance controls already in place.</strong> Nothing new to audit. Nothing new to approve. Just fewer things on the list.
+        </div>
+        <div class="cwhy"><strong>Why this works:</strong> GovCon buyers have a strong prior that "new AI features" mean new workflows to manage and new things to explain to auditors. This copy eliminates that concern in the first sentence ("same Costpoint workflows," "same compliance controls"). The benefit is scoped to concrete tasks they recognize. The word "AI" doesn't appear once, because it doesn't need to.</div>
+      </div>
+    </div>
+
+    <!-- COPY 2 -->
+    <div class="cex reveal">
+      <div class="cex-top">
+        <span class="cex-ch">Customer email &nbsp;/&nbsp; Dela Agents activation outreach for existing accounts</span>
+        <span class="cbadge email">Email</span>
+      </div>
+      <div class="cex-body">
+        <div class="ched">There's a feature in your Costpoint account your team probably hasn't turned on yet.</div>
+        <div class="ctxt">
+          Based on your account data, your team is still manually processing expense reports and timesheet approvals the same way you were 18 months ago. That's not a problem exactly, it's just time that could be somewhere else.
+          <br><br>
+          Costpoint added the ability to automate both of those workflows last quarter. It takes about 20 minutes to configure. <strong>Once it's on, your accounting team doesn't touch routine approvals anymore unless something is flagged.</strong> It works within the compliance controls you already have in place, so there's nothing new to add to your audit package.
+          <br><br>
+          If you want a 15-minute walkthrough to see if it fits how your team works, your CSM can show you.
+        </div>
+        <div class="cwhy"><strong>Why this works:</strong> This email leads with what the customer already has ("in your Costpoint account"), not what Deltek built. It uses account data to make the outreach feel specific, not broadcast. "20 minutes to configure" addresses the adoption anxiety. And "nothing new to add to your audit package" is the single most important thing you can say to a GovCon finance team before they agree to enable a new feature.</div>
+      </div>
+    </div>
+
+    <!-- COPY 3 -->
+    <div class="cex reveal">
+      <div class="cex-top">
+        <span class="cex-ch">Internal sales card &nbsp;/&nbsp; Competitive objection: "We don't need AI in our ERP"</span>
+        <span class="cbadge sales">Sales enablement</span>
+      </div>
+      <div class="cex-body">
+        <div class="ched">When they say "we're not really looking at AI tools right now"</div>
+        <div class="ctxt">
+          Don't push on AI. Ask one question: "When you close out a contract or process a batch of expense reports, what does that look like for your accounting team on a Friday afternoon?" Then let them answer. If the answer is "it's a pain" or "we have a person who handles that," the follow-up writes itself: "What we're talking about isn't really an AI project. It's just automating the specific steps in Costpoint your team is already doing manually. The controls don't change. The audit trail doesn't change. The only thing that changes is your team doesn't have to do it themselves."
+        </div>
+        <div class="cwhy"><strong>Why this works:</strong> GovCon buyers who push back on AI almost always have a compliance concern underneath, not a capability concern. This card redirects the conversation away from "AI" entirely and anchors it on a workflow problem the prospect has already admitted to. The rep is not arguing for AI. They're describing an automation that the prospect just described needing. The compliance language at the end ("controls don't change, audit trail doesn't change") removes the residual objection without raising it as an issue.</div>
+      </div>
+    </div>
+
+    <!-- COPY 4 -->
+    <div class="cex reveal">
+      <div class="cex-top">
+        <span class="cex-ch">Internal brief &nbsp;/&nbsp; AI-assisted GTM: how I'd actually use AI in this role</span>
+        <span class="cbadge internal">Process note</span>
+      </div>
+      <div class="cex-body">
+        <div class="ched">How I use AI to work faster without the output showing it</div>
+        <div class="ctxt">
+          The JD specifically asks for a candidate who can demonstrate AI use in GTM execution. Here's what that looks like in practice for me.
+          <br><br>
+          <strong>Research compression:</strong> Before any messaging project, I use Claude to pull and synthesize public customer feedback from G2, Capterra, and Reddit threads. What used to take two days of reading now takes 90 minutes of synthesis and pattern-spotting. The insight quality is higher because I'm reading more signal.
+          <br><br>
+          <strong>Copy iteration:</strong> I draft in my own voice first, then use AI to stress-test the draft: "read this as a DCAA auditor" or "what's the objection a skeptical CFO has to this claim?" The AI doesn't write the copy. It plays the skeptic so I don't have to wait for Sales feedback to find the holes.
+          <br><br>
+          <strong>Enablement scaling:</strong> One strong interview becomes a battle card, a FAQ, a short talk track, and a social proof snippet, all in a single session. The PMM writes the original. AI handles the format variation.
+        </div>
+        <div class="cwhy"><strong>Why I'm including this:</strong> The role asks specifically for a candidate who can walk through a GTM example that includes AI use. This is that example: real workflow changes, not theoretical ones. The output doesn't sound AI-generated because the thinking, structure, and positioning judgment are mine. AI handles the parts that don't require judgment so that my time goes to the parts that do.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 06 OTHER WORK -->
+<section id="work" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="sec-ey reveal">
+      <span class="sec-num">Part 06</span>
+      <span class="sec-nm">Other relevant work</span>
+    </div>
+    <div class="wgrid reveal">
+      <a href="https://bhanuexcalibur.github.io/Canonical/" class="wcard" target="_blank" rel="noopener">
+        <div class="wcard-tag">Full PoW &nbsp;&#183;&nbsp; Enterprise B2B SaaS / IoT &amp; Linux</div>
+        <h4>Canonical: Proof of Work</h4>
+        <p>GTM brief and multi-buyer messaging for Ubuntu Core and Ubuntu Pro for Devices. Closest structural parallel to this page: a technically dense B2B SaaS product with compliance at the center, three very different buyers (engineer, CTO, procurement), and the same challenge Deltek faces with Dela, which is making a product capability feel safe and operational rather than experimental.</p>
+        <span class="warr">&#8594;</span>
+      </a>
+      <a href="https://bhanuexcalibur.github.io/Veeva/" class="wcard" target="_blank" rel="noopener">
+        <div class="wcard-tag">Full PoW &nbsp;&#183;&nbsp; Enterprise SaaS / Regulated industry</div>
+        <h4>Veeva Systems: Proof of Work</h4>
+        <p>Messaging audit and GTM work for a compliance-heavy enterprise SaaS platform in life sciences. The parallel to Costpoint is direct: a dominant market leader in a regulated vertical whose buyers treat compliance as the primary purchase criterion. The AI positioning challenge in this PoW maps closely to the Dela adoption problem.</p>
+        <span class="warr">&#8594;</span>
+      </a>
+      <a href="https://bhanuexcalibur.github.io/ChargeBee/" class="wcard" target="_blank" rel="noopener">
+        <div class="wcard-tag">Full PoW &nbsp;&#183;&nbsp; B2B SaaS / Billing infrastructure</div>
+        <h4>Chargebee: Proof of Work</h4>
+        <p>Persona-driven GTM brief and copy samples for an enterprise billing platform. The Finance lead and RevOps buyer work here maps directly to the CFO and finance buyer positioning in GovCon. The ICP section is the closest structural equivalent to the buyer map I'd build for Costpoint's three-buyer deal cycle.</p>
+        <span class="warr">&#8594;</span>
+      </a>
+      <a href="https://bhanuexcalibur.github.io/Shippo/" class="wcard" target="_blank" rel="noopener">
+        <div class="wcard-tag">Full PoW &nbsp;&#183;&nbsp; Logistics SaaS / Operations</div>
+        <h4>Shippo: Proof of Work</h4>
+        <p>Multi-segment messaging, persona work, and sales enablement copy for a logistics SaaS platform. Different domain, same fundamental challenge: one product with meaningfully different value props depending on who's buying. The competitive objection cards and the persona switcher here are the format I'd use for Costpoint's Sales enablement work.</p>
+        <span class="warr">&#8594;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE -->
+<div class="wrap">
+  <div class="sig reveal">
+    <div>
+      <div class="sig-name">Bhanu <span>Kumar</span></div>
+      <div class="sig-det">
+        <a href="mailto:bhanukumar0902@gmail.com">bhanukumar0902@gmail.com</a><br>
+        <a href="https://linkedin.com/in/bhanuexcalibur" target="_blank" rel="noopener">linkedin.com/in/bhanuexcalibur</a> &nbsp;&#183;&nbsp;
+        <a href="https://x.com/excaliburbhanu" target="_blank" rel="noopener">@excaliburbhanu</a>
+      </div>
+    </div>
+    <div class="sig-btns">
+      <a class="sbtn pri" href="mailto:bhanukumar0902@gmail.com">
+        Get in touch
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 6.5h8M7.5 3.5l3 3-3 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="sbtn ghost" href="https://drive.google.com/file/d/1Pzbh5LXLqcEzwam8xuERXgtDRDPoFuSl/view" target="_blank" rel="noopener">Full resume &#8594;</a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* NAV */
+function toggleMob(){
+  document.getElementById('mob').classList.toggle('open');
+  document.getElementById('hbg').classList.toggle('open');
+}
+function closeMob(){
+  document.getElementById('mob').classList.remove('open');
+  document.getElementById('hbg').classList.remove('open');
+}
+
+/* MESSAGING AUDIT TABS */
+function swTab(id, btn){
+  document.querySelectorAll('.apanel').forEach(function(p){ p.classList.remove('on'); });
+  document.querySelectorAll('.tbtn').forEach(function(b){ b.classList.remove('on'); });
+  document.getElementById('ap-'+id).classList.add('on');
+  btn.classList.add('on');
+}
+
+/* BUYER MAP */
+var buyers = {
+  cfo: {
+    label: 'Buyer 01',
+    name: 'The GovCon CFO',
+    role: 'CFO / VP Finance at a GovCon firm (200-2,000 employees, DoD or civilian contracts)',
+    pains: [
+      'Month-end close requires reconciling data across contract mods, indirect rate pools, and project actuals',
+      'DCAA audit prep is semi-manual and creates crunch periods for the accounting team every year',
+      'Compliance costs are going up (CMMC, FAR changes) and the board wants a clear cost story',
+      'AI tools feel like a liability until someone explains what the audit trail looks like'
+    ],
+    goals: [
+      'Wants to close faster and with fewer manual reconciliation steps',
+      'Needs a compliance story that satisfies auditors without a custom prep project every cycle',
+      'Cares about the indirect rate accuracy that determines contract profitability',
+      'Wants to see Costpoint positioned as the financial system of record, not just the ERP layer'
+    ],
+    message: '"Your indirect rates, your audit package, your contract financials. Costpoint already has all of it. Dela just means your team stops touching the parts that don\'t require judgment."'
+  },
+  pm: {
+    label: 'Buyer 02',
+    name: 'The Project Manager',
+    role: 'PM / Program Manager at a GovCon firm running multiple government contracts',
+    pains: [
+      'Spends hours a week chasing timesheets from billable employees who miss the Monday deadline',
+      'Resource allocation decisions are made on spreadsheets pulled from Costpoint, not inside it',
+      'Contract modifications create accounting ripples that take a week to fully understand',
+      'The disconnect between what\'s billed and what\'s been delivered shows up late, not in real time'
+    ],
+    goals: [
+      'Wants to see project health in one place without running three reports and opening Excel',
+      'Needs timesheet compliance to be the system\'s problem, not something they have to manage personally',
+      'Cares about burn rate and funded value visibility week over week, not just at month end',
+      'Wants to stop being the person who follows up on every approval in the chain'
+    ],
+    message: '"The timesheet that\'s two days late. The approval sitting in someone\'s inbox. The contract record you have to build by hand from a PDF. These are the things Dela is built for. Your job is the project, not the paperwork around it."'
+  },
+  contracts: {
+    label: 'Buyer 03',
+    name: 'The Contracts Lead',
+    role: 'Contracts Manager / Contracts Director responsible for GovCon compliance and regulatory adherence',
+    pains: [
+      'Tracks contract modifications, option periods, and funding ceiling updates across too many systems',
+      'CMMC requirements are tightening and the compliance evidence trail needs to be clean and defensible',
+      'Getting everyone in the organization to understand what "compliant" means in practice is constant work',
+      'Vendor certifications and subcontractor compliance documentation still live in a mix of email and SharePoint'
+    ],
+    goals: [
+      'Wants vendor certification management centralized in one place that auditors can actually see',
+      'Needs CMMC and DFARS documentation that\'s audit-ready by default, not assembled under pressure',
+      'Cares about having a compliance posture that helps win competitive bids, not just pass reviews',
+      'Wants AI tools that have an answer to the question "what does the DCAA see when they look at this?"'
+    ],
+    message: '"The compliance work doesn\'t go away. But when your ERP already carries the audit trail, the evidence, and the controls, the question changes from \'how do we prove it\' to \'where do we point them.\'"'
+  }
+};
+
+var order = ['cfo','pm','contracts'];
+
+function renderBuyers(active){
+  var tabs = document.getElementById('ptabs');
+  var card = document.getElementById('pcard');
+  tabs.innerHTML = order.map(function(k){
+    var b = buyers[k];
+    return '<button class="ptab'+(k===active?' on':'')+'" onclick="renderBuyers(\''+k+'\')">'
+      +'<div class="ptab-label">'+b.label+'</div>'
+      +'<div class="ptab-name">'+b.name+'</div>'
+      +'<div class="ptab-role">'+b.role.split(' at ')[0]+'</div>'
+      +'</button>';
+  }).join('');
+  var b = buyers[active];
+  card.innerHTML = '<div class="pcard-hdr">'
+    +'<span class="ptag">'+b.label+'</span>'
+    +'<h4>'+b.name+'</h4>'
+    +'<p>'+b.role+'</p>'
+    +'</div>'
+    +'<div class="pcard-body">'
+    +'<div class="pcard-col"><h5>What they worry about</h5><ul>'
+    +b.pains.map(function(x){ return '<li>'+x+'</li>'; }).join('')
+    +'</ul></div>'
+    +'<div class="pcard-col"><h5>What they actually want</h5><ul>'
+    +b.goals.map(function(x){ return '<li>'+x+'</li>'; }).join('')
+    +'</ul></div>'
+    +'<div class="pcard-msg"><h5>How to open the conversation</h5><p>'+b.message+'</p></div>'
+    +'</div>';
+}
+renderBuyers('cfo');
+
+/* READING PROGRESS */
+window.addEventListener('scroll', function(){
+  var doc = document.documentElement;
+  var scrolled = doc.scrollTop || document.body.scrollTop;
+  var total = doc.scrollHeight - doc.clientHeight;
+  var pct = total > 0 ? (scrolled / total) * 100 : 0;
+  document.getElementById('rbar').style.width = pct + '%';
+});
+
+/* SCROLL REVEAL */
+if('IntersectionObserver' in window){
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  },{threshold:0.06,rootMargin:'0px 0px -10px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+} else {
+  document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+}
+window.addEventListener('load', function(){
+  document.querySelectorAll('.reveal').forEach(function(el){
+    var r = el.getBoundingClientRect();
+    if(r.top < window.innerHeight){ el.classList.add('in'); }
+  });
+});
+</script>
+</body>
+</html>
